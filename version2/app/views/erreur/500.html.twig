@@ -1,0 +1,13 @@
+{# app/views/erreur/500.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}Une erreur 500 ! Une erreur de fonctionnement est apparu lors de l'affichage de la page.{% endblock %}
+
+{% block stylesheet %}
+	<link href="{{ asset('res/erreur/erreur.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+	<div class="img" style="background:url({{ asset('res/erreur/500.png') }});"> </div>
+{% endblock %}

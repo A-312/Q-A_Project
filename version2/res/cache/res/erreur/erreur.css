@@ -1,0 +1,38 @@
+body {
+	background:#eeeeee;
+	text-align:center;
+}
+div.img {
+	width:800px;
+	height:418px;
+	position:relative;
+	background:url("xxx.png");
+	margin:25px auto;
+	display:block;
+}
+div.num {
+	width:74px;
+	height:121.4px;
+	position:absolute;
+	background:url("chiffre.png");
+	background-position:left top;
+	top:5px;
+}
+div.num.n0 { left:396px; }
+div.num.n1 { left:470px; }
+div.num.n2 { left:544px; }
+div.text {
+	font-family:verdana, sans-serif;
+	border:1px solid #2D3E50;
+	padding:4px;
+	font-size:14px;
+	text-align:left;
+	position:absolute;
+	color:#2D3E50;
+	left:17px;
+	top:180px;
+	width:380px;
+}
+div.text p.msg {
+	padding-left:5px;
+}

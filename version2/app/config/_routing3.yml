@@ -1,0 +1,8 @@
+admin:
+    path:      /p/{page}
+    defaults:  { _controller: AcmeBlogBundle:Blog:index, page: 1 }
+    requirements:
+        page:  \d+
+admin_ac:
+    path:      /ac
+    defaults:  { _controller: AcmeDemoBundle:Main:homepage }

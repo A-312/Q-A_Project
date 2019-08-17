@@ -1,0 +1,21 @@
+Symfony\Component => Symfony
+Symfony\\Component => Symfony
+
+C:\wamp\www2\vendor\Symfony\HttpFoundation\Response.php remplacement de la fonction :
+
+	public function send()
+	{
+		$kernel = \Core\Kernel\Kernel::getCore();
+		if ($kernel->isDevEnvironment()) {
+			$ob_get_contents = ob_get_contents();
+			if (!empty($ob_get_contents)) {
+				$kernel->getBundle("DebugBar")["messages"]->addMessage($ob_get_contents);
+			}
+		}
+		if (ob_get_level() > 0) { ob_clean(); }
+
+		$this->sendHeaders();
+		$this->sendContent();
+
+		return $this;
+	}

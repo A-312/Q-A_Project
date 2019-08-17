@@ -1,0 +1,95 @@
+{# src/Forum/Resources/views/listeQuestions.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block bodycontent %}
+	<table id="subContent">
+		<tr>
+			<td id="categoriequestion">
+				<div class="headerContent">
+					<span>Toutes les questions</span>
+					<ul>
+						<li><a href="{{ path(app.route, {tri:"recent"}) }}" class="{{ tri == "recent" or tri == "mesinterventions" ? "here" }}">Dernier</a></li>
+						<li><a href="{{ path(app.route, {tri:"vote"}) }}" class="{{ tri == "vote" ? "here" }}">Top</a></li>
+					</ul>
+				</div>
+				<table id="listquestion">
+					{% if pagination and pagination.page != 1 %}
+						<tr class="top">
+							<td colspan="2">
+								<div class="pagination">
+									<a href="{{ path(app.route, { page: pagination.page-1, tag: app.tag }) }}">Charger la page précédente</a>
+								</div>
+							</td>
+						</tr>
+					{% endif %}
+					{% spaceless %}
+						{% for question in questions %}
+							<tr class="question">
+								<td class="stats">
+									{% for compteur in question.compteurs %}
+										<div class="picstats"><span class="nbr">{{ compteur[0] }}</span><span>{{ compteur[1] }}</span></div>
+									{% endfor %}
+									<p class="view"><span class="nbr">{{ question.vue[0]|number_format }}</span> {{ question.vue[1] }}</p>
+								</td>
+								<td class="qinfo">
+									<h3><a href="{{ path("question", { id: question.id, titre: question.titreurl }) }}" title="{{ question.ilya }}, par {{ question.membre.pseudo }} {{ question.membre.reputation }}.">{{ question.titre }}</a></h3>
+									<div class="tags">
+										{% for tag in question.tags %}
+											<a class="tagbl" href="{{ path(app.route, { tag: tag }) }}">{{ tag }}</a>&nbsp;
+										{% endfor %}
+									</div>
+									<div class="autor" title="{{ question.date }}">
+										<p>
+										<a href="{{ question.membre.url }}"><span class="ilya">{{ question.ilya }}</span> {{ question.membre.pseudo }} <span class="arank">[{{ question.membre.reputation }}]</span></a>
+										</p>
+									</div>
+								</td>
+							</tr>
+						{% endfor %}
+					{% endspaceless %}
+					{% if pagination %}
+						<tr class="foot">
+							<td colspan="2">
+								{% include "tools/pagination.html.twig" %}
+							</td>
+						</tr>
+					{% endif %}
+				</table>
+			</td>
+			<td id="sidebar">
+				<div class="sidenumber">
+					{% set s = nbrquestion > 1 ? "s" : "" %}
+					<div>{{ nbrquestion|number_format }}</div>
+					<p>question{{ s ~ (selectiontags ? " selectionné" ~ s : "") }}<p>
+				</div>
+				{% if selectiontags %}
+					<div class="sidebloc">
+						<div class="headerContent">
+							<span>Tags selectionnés</span>
+						</div>
+						<div class="list">
+							{% for tag in selectiontags %}
+								<p><a class="tagbl" href="{{ path(app.route, { tag: tag.nom }) }}">{{ tag.nom }}</a> <span>x{{ tag.nombre }}</span></p>
+							{% endfor %}
+							<hr>
+							<center><p><a href="{{ path(app.route, { tri: tri }) }}" style="text-align:center;">Supprimer la selection</a></p></center>
+						</div>
+					</div>
+				{% endif %}
+				<div class="sidebloc">
+					<div class="headerContent">
+						<span>Tags les plus actifs</span>
+					</div>
+					<div class="list">
+						{% set turl = app.tag ~ ((app.tag) ? "-" : "") %}
+						{% for tag in tags %}
+							<p><a class="tagbl" href="{{ path(app.route, { tag: turl ~ tag.nom }) }}">{{ tag.nom }}</a> <span>x{{ tag.nombre }}</span></p>
+						{% endfor %}
+						<hr>
+						<p>*Cliquez sur un tag pour affiner votre recherche.</p>
+					</div>
+				</div>
+			</td>
+		</table>
+	{% endblock %}

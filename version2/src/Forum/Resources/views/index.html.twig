@@ -1,0 +1,16 @@
+{# src/Forum/Resources/views/index.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block bodycontent %}
+	<div id="subContent">
+		<div class="headerContent">
+			<span>Temporaire</span>
+		</div>
+		<div class="subContentBorder">
+			<div style="margin:20px;">
+				<a href="{{ path("questions") }}">{{ path("questions") }}</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

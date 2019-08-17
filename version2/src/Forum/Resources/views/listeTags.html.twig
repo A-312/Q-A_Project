@@ -1,0 +1,55 @@
+{# src/Forum/Resources/views/listeTags.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block bodycontent %}
+	<div id="subContent">
+		<div id="listebloc">
+			<div class="headerContent">
+				<span>{{ (tagterm) ? "Tous les tags avec \"" ~ tagterm ~ "\"" : "Tous les tags" }}</span>
+			</div>
+			<div class="subContentBorder">
+				<form id="search" method="POST" action="{{ path(app.route, { tag: "88tagterm88" }) }}" onsubmit="return search(event, this);">
+					<p>Les tags sont des mots-clés permettant de catégoriser simplement les différents sujets abordés.</p>
+					<div id="searchbloc" class="I-search-tag">
+						<label for="term">Tag :</label>
+						<input type="text" name="term" class="inputtext" id="term" value="{{ tagterm }}"/>
+						<a onclick="this.parentNode.parentNode.submit();">Chercher &gt;&gt;</a>
+					</div>
+				</form>
+				<div id="list">
+					<table>
+					{% set columns = 4 %}
+						{% for tag in tags %}
+							{% if loop.first or loop.index0 is divisibleby(columns) %}<tr>{% endif %}
+							
+							<td>
+								<div class="pictag">
+									<p class="header"><a class="tagbl" href=".">{{ tag.nom }}</a> <span>x{{ tag.nombre }}</span></p>
+									<p class="content">{{ tag.description }}</p><a class="plusdinfo" href=".">Plus d'information</a>
+								</div>
+							</td>
+							
+							{% if loop.last and loop.index is not divisibleby(columns) %}
+								{% for n in range(low=columns - (loop.index % columns), high=1, step=-1) %}
+									<td>&nbsp;</td>
+								{% endfor %}
+							{% endif %}
+							
+							{% if loop.last or loop.index is divisibleby(columns) %}</tr>{% endif %}
+						{% endfor %}
+					</table>
+					{% if pagination %}
+						{% include "tools/pagination.html.twig" %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function search(e, obj) {
+			window.location = obj.action.replace(/88tagterm88/, document.getElementById('term').value);
+			return false;
+		}
+	</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{# app/views/erreur/xxx.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}Une erreur {{ erreur }} ! Un problème a été détecté lors de l'affichage de la page.{% endblock %}
+
+{% block stylesheet %}
+	<link href="{{ asset('res/erreur/erreur.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+	<div class="img">
+		{% for i, n in (erreur|split('')) %}
+			<div class="num n{{ i }}" style="background-position:left -{{ n*121.4 }}px;"></div>
+		{% endfor %}
+		<div class="text">
+			<p><i>(?) Information supplémentaire :</i></p>
+			<p class="msg">{{ message }}</p>
+		</div>
+	</div>
+{% endblock %}

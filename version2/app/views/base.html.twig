@@ -1,0 +1,17 @@
+{# app/views/base.html.twig #}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>{% block title %}La 12zième communauté !{% endblock %}</title>
+		{% block stylesheet %}{% endblock %}
+		<link rel="icon" type="image/x-icon" href="{{ asset('Forum/favicon.ico') }}" />
+
+		{% include "googleanalytics.html.twig" %}
+	</head>
+	<body>
+		{% block body %}{% endblock %}
+		{% block javascript %}{% endblock %}
+	</body>
+</html>

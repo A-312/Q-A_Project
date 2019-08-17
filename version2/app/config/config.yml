@@ -1,0 +1,8 @@
+pdo:
+    host: localhost
+    dbname: sdd
+    user: "{{user_db}}"
+    password: "{{password_db}}"
+res:
+    host: res2.local.mywebsite.fr
+    scheme: http

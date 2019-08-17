@@ -1,0 +1,5 @@
+ErrorDocument 403 /app.php
+
+<FilesMatch ".(psd)$">
+	Deny from all
+</FilesMatch>

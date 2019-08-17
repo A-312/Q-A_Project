@@ -1,0 +1,8 @@
+ini_set:
+    log_errors: 1
+    error_log: ../app/logs/php-error.log
+    error_reporting: 32767 #E_ALL = 32767
+    display_errors: 0
+    date.timezone: Europe/Paris
+config:
+    routing_yml: ../app/config/routing.yml

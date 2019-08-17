@@ -1,0 +1,28 @@
+homepage:
+    path:      /{culture}
+    defaults:  { _controller: AcmeDemoBundle:Main:homepage, culture: en }
+    requirements:
+        culture:  en|fr
+contact:
+    path:     /contact
+    defaults: { _controller: AcmeDemoBundle:Main:contact }
+    methods:  [GET]
+contact_process:
+    path:     /contact
+    defaults: { _controller: AcmeDemoBundle:Main:contactProcess }
+    methods:  [POST]
+routing3:
+    resource: "/routing3.yml"
+    prefix:   /admin
+douze2:
+    path:   /douze2/{page}
+    defaults:  { _controller: AcmeBlogBundle:Blog:index, page: 1 }
+    requirements:
+        page:  \d+
+article_show:
+  path:     /articles/{culture}/{year}/{title}.{_format}
+  defaults: { _controller: AcmeDemoBundle:Article:show, _format: html }
+  requirements:
+      culture:  en|fr
+      _format:  html|rss
+      year:     \d+

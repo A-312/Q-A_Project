@@ -1,0 +1,59 @@
+{# src/Forum/Resources/views/base.html.twig #}
+
+{% extends "@res/base.html.twig" %}
+
+{% block title %}La 12zième communauté !{% endblock %}
+
+{% block stylesheet %}
+	{% if app.isDevEnvironment %}<script type="text/javascript">less = { env: 'development' };</script>{% endif %}
+	<link rel="stylesheet/less" type="text/css" href="{{ asset('Forum/design/style.less') }}">
+	<script type="text/javascript" src="{{ asset('Forum/js/lib/less.js') }}"></script>
+	{% if app.isDevEnvironment %}<script>less.watch();</script>{% endif %}
+	<script type="text/javascript" src="{{ asset('Forum/js/lib/jquery.js') }}"></script>
+	{#<script type="text/javascript" src="{{ asset('Forum/js/require.file.js') }}" async="true"></script>
+	<meta name="requirejs.dir" content="{{ asset('Forum/') }}">#}
+{% endblock %}
+
+{% block body %}
+	<div id="header">
+		<div id="logo"></div>
+		<ul id="toolbar">
+			<li><input type="text" value="Chercher..." style="color:#666;" onfocus="val_onfocus(this)" onblur="val_onblur(this)" /></li>
+			<li><a href="./faq.html">Issue Tracker</a></li>
+			<li class="theme2"><a href="./?theme=2">Thème 2 (????)</a></li>
+			<li class="theme1"><a href="./?theme=1">Thème 1 (Defaut)</a></li>
+			<li><a href="./">Accueil</a></li>
+			{% if membre is null %}
+				<li class="left"><a href="./connexion.html">[ Connexion ]</a></li>
+				<li class="left"><a href="./inscription.html">[ Inscription ]</a></li>
+			{% else %}
+				<li class="left"><a href="./profil-{{ membre.id }}.html">[ {{ membre.pseudo }} ]</a></li>
+				<li class="left"><a href="#">[ i (0) ]</a></li>
+				<li class="left">
+					<form action="./deconnexion.html" method="POST">
+						<input type="hidden" name="page" value="{{ REQUEST_URI }}"/>
+						<input type="hidden" name="session" value="{{ token }}"/>
+						<a onclick="this.parentNode.submit();">[ Deconnexion ]</a>
+					</form>
+				</li>
+			{% endif %}
+		</ul>
+		<div id="douze">
+			<a href="{{ path('home') }}">
+				<h1>La <span>12<sup><span>z</span>ième</sup></span> communauté !</h1>
+				<p>Partagez, participez, et suivez l'actualité du Web.</p>
+			</a>
+		</div>
+		<ul id="menu">
+			{% for route,label in navigbar %}
+				<li id="cx_{{ route }}">
+					<a href="{{ path(route) }}" {{ (app.route == route) ? "class=here" : "" }}>{{ label }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+		<div style="clear:both"></div>
+	</div>
+	<div id="content">
+		{% block bodycontent %}{% endblock %}
+	</div>
+{% endblock %}

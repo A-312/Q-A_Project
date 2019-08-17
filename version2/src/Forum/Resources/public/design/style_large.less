@@ -1,0 +1,111 @@
+body {
+	padding:36px 12px 0 212px;
+
+	div#header {
+		position:fixed;
+		top:0;
+		left:0;
+		width:200px;
+		height:100%;
+		background:#777;
+		z-index:10;
+		padding:0;
+
+		ul#toolbar {
+			background:#777;
+			position:fixed;
+			top:0;
+
+			min-width:1100px;
+			width:100%;
+			margin:0;
+
+			li {
+				height:inherit;
+				margin:0;
+				margin-left:8px;
+
+				input {
+					margin:2px 12px 2px 0;
+				}
+
+				&.theme1 a { text-decoration:none; }
+				&.theme2 a { text-decoration:underline; }
+
+				a {
+					display:block;
+					padding:4px 5px 3px 5px;
+					height:24px-7;
+					color:#FFF;
+					&:hover { background:negation(#024866, #12C); }
+				}
+			}
+		}
+		ul#menu {
+			width:200px;
+			margin:0;
+			padding-top:36px;
+
+			li {
+				display:block;
+				float:none;
+				margin:0;
+
+				a {
+					display:block;
+				}
+				&#cx_rediger {
+					float:none;
+				}
+			}
+		}
+	}
+	div#content {
+		min-height:inherit;
+		padding:0;
+
+		#subContent {
+			padding:0;
+			width:100%;
+
+			div#sujetquestion table#listemessage tr.blocmsg {
+				td.left {
+					left:inherit;
+					right:0;
+				}
+			}
+
+			div#redactionquestion {
+				width:100%;
+			}
+		}
+	}
+	div#footer {
+		clear:none;
+
+		position:fixed;
+		left:0;
+		bottom:0;
+		min-height:80px;
+		width:200px;
+		text-align:center;
+		color:#FFF;
+		z-index:10+2;
+
+		div#subfooter {
+			padding-top:2px;
+			color:#FFF;
+			height:25px;
+			background:#444;
+		}
+
+		div#devtool {
+			max-height:100px;
+			overflow:auto;
+
+			&:hover {
+				width:1000px;
+			}
+		}
+	}
+}

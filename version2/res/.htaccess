@@ -1,0 +1,29 @@
+Options -Indexes
+AddDefaultCharset UTF-8
+
+DirectoryIndex res.php
+
+RewriteEngine On
+
+AddType text/less .less
+
+Header set Access-Control-Allow-Origin *
+
+RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_URI} -f
+RewriteRule ^(.*)$ cache/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/cache/.*$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ res.php [L]
+
+<IfModule mod_headers.c>
+	<IfModule mod_deflate.c>
+		SetOutputFilter DEFLATE
+	</IfModule>
+</IfModule>
+
+#mnt ErrorDocument 403 /maintenance.html
+#mnt #Maintenance
+#mnt <FilesMatch ".*\.php$">
+#mnt 	Deny From All
+#mnt </FilesMatch>

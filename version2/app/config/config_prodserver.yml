@@ -1,0 +1,8 @@
+pdo:
+    host: mysql51-60.pro
+    dbname: sdd
+    user: "{{user_sdd}}"
+    password: "{{password_sdd}}"
+res:
+    host: res.mywebsite.fr
+    scheme: http

@@ -1,0 +1,26 @@
+{# src/SqlView/Resources/views/sqlview.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}SQLView{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet/less" type="text/css" href="{{ asset('SqlView/sqlview.less') }}">
+	<script src="{{ asset('/Forum/js/lib/less.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+	{% for table in tables %}
+		<div class="table">
+			<div>{{ table.title }}</div>
+			<ul>
+			{% for column in table.column %}
+				<li id="{{ column.id }}" title="{{ column.option }}">
+					<span class="{{ column.option }}">{{ column.name }}</span> {{ column.d | raw }}
+					<br><font>{{ column.type }}</font>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+	{% endfor %}
+{% endblock %}

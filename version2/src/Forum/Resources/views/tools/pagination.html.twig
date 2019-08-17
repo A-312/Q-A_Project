@@ -1,0 +1,16 @@
+{# src/Forum/Resources/views/tools/pagination.html.twig #}
+
+<div class="pagination">
+	{% for element in pagination.elements %}
+		{% set p_url = path(app.route, { page: element[1], tag: app.tag ?: tagterm }) %}
+		{% if element[0] == "int" %}
+			{% if element[1] == pagination.page %}<a class="here">{% else %}<a href="{{ p_url }}">{% endif %}{{ element[1] }}</a>
+		{% elseif element[0] == "str" %}
+			<span>{{ element[1] }}</span>
+		{% elseif element[0] == "prec" %}
+			<a href="{{ p_url }}">{{ (pagination.mini) ? "&lt;" : "« Précédent" }}</a>
+		{% elseif element[0] == "suiv" %}
+			<a href="{{ p_url }}">{{ (pagination.mini) ? "&gt;" : "Suivant »" }}</a>
+		{% endif %}
+	{% endfor %}
+</div>

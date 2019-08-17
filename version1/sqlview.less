@@ -1,0 +1,66 @@
+*:target { background:lightblue; }
+a {
+	cursor:pointer;
+	color:#2677C9;
+	text-decoration:none;
+	&:hover { color:#C87B02; }
+}
+body {
+	font-family:Calibri;
+	div.table {
+		vertical-align:top;
+		display:inline-block;
+		border:1px solid black;
+		width:200px;
+		margin:5px;
+
+		& > div {
+			background:#777;
+			color:#FFF;
+			border-bottom:1px solid black;
+			text-align:center;
+			padding:10px;
+		}
+
+		& > ul {
+			margin:0;
+			padding:0;
+
+			li {
+				list-style:none;
+				line-height:14px;
+				padding:10px;
+				cursor:default;
+
+				&:hover {
+					background:#CCC;
+				}
+
+				span.PRI {
+					text-decoration:underline;
+				}
+
+				span.MUL:before {
+					content:"#";
+				}
+
+				span.auto_increment { }
+
+				a {
+					float:right;
+				}
+
+				font {
+					font-size:11px;
+					&:before {
+						content:"Type : ";
+					}
+				}
+			}
+		}
+	}
+	a#phpMyAdmin {
+		position:fixed;
+		right:0; bottom:0;
+	}
+}

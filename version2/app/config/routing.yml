@@ -1,0 +1,39 @@
+_res:
+    path:       /{url}
+    host:       res2.{domain}
+    defaults:   { _controller: ResRouting:Router:router }
+    requirements:
+        url:    .*
+        domain: (local\.)?mywebsite\.fr
+comingsoon:
+    path:       /comingsoon/
+    defaults:   { _controller: ComingSoon:ComingSoon:index }
+home:
+    path:       /
+    defaults:   { _controller: Forum:Question:index }
+questions:
+    path:       /questions/{page}/{tag}
+    defaults:   { _controller: Forum:Question:listeQuestions, page: 1, tag: '' }
+    requirements:
+        page:   \d+
+        tag:    "[-A-z0-9]+"
+question:
+    path:       /question/{id}/{titre}/{page}
+    defaults:   { _controller: Forum:Question:lectureQuestion, page: 1 }
+    requirements:
+        id:     \d+
+        titre:  "[-A-z0-9]+"
+        page:   \d+
+tags:
+    path:       /tags/{page}/{tag}
+    defaults:   { _controller: Forum:Tag:listeTags, page: 1, tag: '' }
+    requirements:
+        page:   \d+
+        tag:    "[-A-z0-9]+"
+tag:
+    path:       /tag/{tag}
+    defaults:   { _controller: Forum:Tag:infoTag, tag: '' }
+    requirements:
+        tag:    "[-A-z0-9]+"
+#routing2:
+#    resource: "/_routing2.yml"

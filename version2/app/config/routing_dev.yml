@@ -1,0 +1,5 @@
+_sqlview:
+    path:      /sqlview/
+    defaults:  { _controller: SqlView:SqlView:index }
+routing2:
+    resource: "/routing.yml"
